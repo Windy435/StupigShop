@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace StupigShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T>: IRepository<T> where T : class
     {
         #region Properties
 
@@ -131,6 +131,11 @@ namespace StupigShop.Data.Infrastructure
         public bool CheckContains(Expression<Func<T, bool>> predicate)
         {
             return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
+
+        public void Add(Random entity)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion Implementation
