@@ -21,7 +21,8 @@ namespace StupigShop.Model.Models
         public int CategoryID { set; get; }
         [MaxLength(256)]
         public string Image { set; get; }
-        public XElement MoreImages { set; get; }
+        [Column(TypeName ="xml")]
+        public string MoreImages { set; get; }
         public decimal Price { set; get; }
         public decimal? PromotionPrice { set; get; }
         public int? Warranty { set; get; }
