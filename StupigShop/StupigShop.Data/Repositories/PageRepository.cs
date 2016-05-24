@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IPageRepository
+    public interface IPageRepository:IRepository<Page>
     {
         IEnumerable<Page> GetByAlias(string alias);
     }

@@ -5,9 +5,10 @@ using System.Linq;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IPostRepository
+    public interface IPostRepository:IRepository<Post>
     {
         IEnumerable<Post> GetByAlias(string alias);
+        void Add(Post post);
     }
 
     public class PostRepository : RepositoryBase<Post>, IPostRepository

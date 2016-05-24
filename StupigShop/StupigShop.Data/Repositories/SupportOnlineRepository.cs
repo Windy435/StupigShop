@@ -3,7 +3,7 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface ISupportOnlineRepository
+    public interface ISupportOnlineRepository:IRepository<SupportOnline>
     {
     }
 

@@ -133,9 +133,10 @@ namespace StupigShop.Data.Infrastructure
             return dataContext.Set<T>().Count<T>(predicate) > 0;
         }
 
-        public void Add(Random entity)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = dbSet.Find(id);
+            dbSet.Remove(entity);
         }
 
         #endregion Implementation

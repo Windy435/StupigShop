@@ -3,7 +3,7 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface ISlideRepository
+    public interface ISlideRepository:IRepository<Slide>
     {
     }
 

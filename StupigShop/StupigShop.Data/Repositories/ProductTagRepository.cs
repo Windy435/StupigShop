@@ -3,7 +3,7 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IProductTagRepository
+    public interface IProductTagRepository:IRepository<ProductTag>
     {
     }
 

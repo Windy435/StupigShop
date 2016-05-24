@@ -3,7 +3,7 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IFooterRepository
+    public interface IFooterRepository: IRepository<Footer>
     {
     }
 

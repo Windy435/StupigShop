@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IPostCategoryRepository
+    public interface IPostCategoryRepository:IRepository<PostCategory>
     {
         IEnumerable<PostCategory> GetByAlias(string alias);
     }
