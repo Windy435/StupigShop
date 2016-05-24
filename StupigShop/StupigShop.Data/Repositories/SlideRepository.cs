@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class SlideRepository : RepositoryBase<Slide>
+    public interface ISlideRepository
+    {
+    }
+
+    public class SlideRepository : RepositoryBase<Slide>, ISlideRepository
     {
         public SlideRepository(DbFactory dbFactory) : base(dbFactory)
         {

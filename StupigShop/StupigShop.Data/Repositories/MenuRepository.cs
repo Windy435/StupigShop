@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class MenuRepository : RepositoryBase<Menu>
+    public interface IMenuRepository
+    {
+    }
+
+    public class MenuRepository : RepositoryBase<Menu>, IMenuRepository
     {
         public MenuRepository(DbFactory dbFactory) : base(dbFactory)
         {

@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class FooterRepository : RepositoryBase<Footer>
+    public interface IFooterRepository
+    {
+    }
+
+    public class FooterRepository : RepositoryBase<Footer>, IFooterRepository
     {
         public FooterRepository(DbFactory dbFactory) : base(dbFactory)
         {
