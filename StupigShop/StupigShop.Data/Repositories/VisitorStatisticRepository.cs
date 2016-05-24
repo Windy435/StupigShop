@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class VisitorStatisticRepository : RepositoryBase<VisitorStatistic>
+    public interface IVisitorStatisticRepository
+    {
+    }
+
+    public class VisitorStatisticRepository : RepositoryBase<VisitorStatistic>, IVisitorStatisticRepository
     {
         public VisitorStatisticRepository(DbFactory dbFactory) : base(dbFactory)
         {

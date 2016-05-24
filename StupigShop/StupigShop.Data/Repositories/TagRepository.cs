@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class TagRepository : RepositoryBase<Tag>
+    public interface ITagRepository
+    {
+    }
+
+    public class TagRepository : RepositoryBase<Tag>, ITagRepository
     {
         public TagRepository(DbFactory dbFactory) : base(dbFactory)
         {

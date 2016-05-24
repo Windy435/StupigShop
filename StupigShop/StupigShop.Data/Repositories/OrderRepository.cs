@@ -3,7 +3,11 @@ using StupigShop.Model.Models;
 
 namespace StupigShop.Data.Repositories
 {
-    public class OrderRepository : RepositoryBase<Order>
+    public interface IOrderRepository
+    {
+    }
+
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
         public OrderRepository(DbFactory dbFactory) : base(dbFactory)
         {
