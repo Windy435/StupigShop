@@ -13,7 +13,7 @@ namespace StupigShop.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201605211438133_InitialDB"; }
+            get { return "201605281925411_InitialDB"; }
         }
         
         string IMigrationMetadata.Source

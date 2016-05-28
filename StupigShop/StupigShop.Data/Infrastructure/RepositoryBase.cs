@@ -24,13 +24,14 @@ namespace StupigShop.Data.Infrastructure
             get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
 
-        #endregion Properties
-
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dbSet = DbContext.Set<T>();
         }
+
+        #endregion Properties
+
 
         #region Implementation
 

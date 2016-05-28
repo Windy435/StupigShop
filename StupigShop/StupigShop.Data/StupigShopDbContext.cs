@@ -5,7 +5,7 @@ namespace StupigShop.Data
 {
     public class StupigShopDbContext : DbContext
     {
-        public StupigShopDbContext() : base("StupigShopConnection")
+        public StupigShopDbContext() : base("name=StupigConnection")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }

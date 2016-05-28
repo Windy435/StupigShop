@@ -6,7 +6,7 @@ using System;
 
 namespace StupigShop.Data.Repositories
 {
-    public interface IPostRepository:IRepository<Post>
+    public interface IPostRepository : IRepository<Post>
     {
         IEnumerable<Post> GetByAlias(string alias);
         IEnumerable<Post> GetAllByTag(string tag, int pageIndex, int pageSize, out int totalRow);
@@ -22,14 +22,14 @@ namespace StupigShop.Data.Repositories
         {
             var query = from p in DbContext.Posts
                         join pt in DbContext.PostTags
-                        on p.ID equals pt.PostID 
+                        on p.ID equals pt.PostID
                         where pt.TagID == tag && p.Status
                         orderby p.CreatedDate descending
                         select p;
             totalRow = query.Count();
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
-            return query;  
-                }
+            return query;
+        }
 
         public IEnumerable<Post> GetByAlias(string alias)
         {

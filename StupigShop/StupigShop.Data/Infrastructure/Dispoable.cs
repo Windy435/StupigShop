@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StupigShop.Data.Infrastructure
 {
@@ -14,14 +10,16 @@ namespace StupigShop.Data.Infrastructure
         {
             Dispose(false);
         }
+
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
         private void Dispose(bool disposing)
         {
-            if(!isDisposed && disposing)
+            if (!isDisposed && disposing)
             {
                 DisposeCore();
             }
@@ -31,7 +29,6 @@ namespace StupigShop.Data.Infrastructure
 
         protected virtual void DisposeCore()
         {
-
         }
     }
 }
