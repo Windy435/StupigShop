@@ -4,11 +4,8 @@ using StupigShop.Data.Infrastructure;
 using StupigShop.Data.Repositories;
 using StupigShop.Model.Models;
 using StupigShop.Service;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StupigShop.UnitTest.ServiceTest
 {
