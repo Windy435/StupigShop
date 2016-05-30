@@ -9,7 +9,7 @@ namespace StupigShop.Data.Repositories
 
     public class ProductTagRepository : RepositoryBase<ProductTag>, IProductTagRepository
     {
-        public ProductTagRepository(DbFactory dbFactory) : base(dbFactory)
+        public ProductTagRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
