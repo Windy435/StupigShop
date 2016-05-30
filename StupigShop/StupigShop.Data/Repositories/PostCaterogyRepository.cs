@@ -12,7 +12,7 @@ namespace StupigShop.Data.Repositories
 
     public class PostCaterogyRepository : RepositoryBase<PostCategory>, IPostCategoryRepository
     {
-        public PostCaterogyRepository(DbFactory dbFactory) : base(dbFactory)
+        public PostCaterogyRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 

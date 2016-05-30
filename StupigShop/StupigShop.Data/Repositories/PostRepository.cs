@@ -14,7 +14,7 @@ namespace StupigShop.Data.Repositories
 
     public class PostRepository : RepositoryBase<Post>, IPostRepository
     {
-        private PostRepository(DbFactory dbFactory) : base(dbFactory)
+        private PostRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 

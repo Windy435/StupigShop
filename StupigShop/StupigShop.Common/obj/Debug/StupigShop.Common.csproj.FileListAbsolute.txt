@@ -1,0 +1,10 @@
+C:\Users\Phong\Source\Repos\StupigShop\StupigShop\StupigShop.Common\bin\Debug\StupigShop.Common.dll
+C:\Users\Phong\Source\Repos\StupigShop\StupigShop\StupigShop.Common\bin\Debug\StupigShop.Common.pdb
+C:\Users\Phong\Source\Repos\StupigShop\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.csprojResolveAssemblyReference.cache
+C:\Users\Phong\Source\Repos\StupigShop\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.dll
+C:\Users\Phong\Source\Repos\StupigShop\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.pdb
+E:\Newbie\StupigShop-ASP.NET_WebAPI_AngularJS\Source\Git\StupigShop\StupigShop.Common\bin\Debug\StupigShop.Common.dll
+E:\Newbie\StupigShop-ASP.NET_WebAPI_AngularJS\Source\Git\StupigShop\StupigShop.Common\bin\Debug\StupigShop.Common.pdb
+E:\Newbie\StupigShop-ASP.NET_WebAPI_AngularJS\Source\Git\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.csprojResolveAssemblyReference.cache
+E:\Newbie\StupigShop-ASP.NET_WebAPI_AngularJS\Source\Git\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.dll
+E:\Newbie\StupigShop-ASP.NET_WebAPI_AngularJS\Source\Git\StupigShop\StupigShop.Common\obj\Debug\StupigShop.Common.pdb

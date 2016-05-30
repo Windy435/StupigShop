@@ -7,13 +7,13 @@ namespace StupigShop.Service
 {
     public interface IPostCategoryService
     {
-        void Add(PostCategory postCategory);
+        PostCategory Add(PostCategory postCategory);
 
         void Update(PostCategory postCategory);
 
-        void Delete(PostCategory postCategory);
+        PostCategory Delete(PostCategory postCategory);
 
-        void Delete(int id);
+        PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
 
@@ -33,19 +33,19 @@ namespace StupigShop.Service
             _unitOfWork = unitOfWork;
         }
 
-        public void Add(PostCategory postCategory)
+        public  PostCategory Add(PostCategory postCategory)
         {
-            _postCateroryRepository.Add(postCategory);
+            return _postCateroryRepository.Add(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategory Delete(int id)
         {
-            _postCateroryRepository.Delete(id);
+            return _postCateroryRepository.Delete(id);
         }
 
-        public void Delete(PostCategory postCategory)
+        public PostCategory Delete(PostCategory postCategory)
         {
-            _postCateroryRepository.Delete(postCategory);
+            return _postCateroryRepository.Delete(postCategory);
         }
 
         public IEnumerable<PostCategory> GetAll()
