@@ -2,6 +2,7 @@
 using StupigShop.Data.Repositories;
 using StupigShop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace StupigShop.Service
 {
@@ -20,6 +21,8 @@ namespace StupigShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetById(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -61,6 +64,11 @@ namespace StupigShop.Service
         public PostCategory GetById(int id)
         {
             return _postCateroryRepository.GetSingleById(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
