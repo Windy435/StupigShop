@@ -1,9 +1,10 @@
-﻿using StupigShop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using StupigShop.Model.Models;
 using System.Data.Entity;
 
 namespace StupigShop.Data
 {
-    public class StupigShopDbContext : DbContext
+    public class StupigShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public StupigShopDbContext() : base("name=StupigConnection")
         {
@@ -29,8 +30,15 @@ namespace StupigShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public static StupigShopDbContext Create()
+        {
+            return new StupigShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
