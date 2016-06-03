@@ -1,10 +1,13 @@
-﻿using StupigShop.Model.Models;
+﻿using AutoMapper;
+using StupigShop.Model.Models;
 using StupigShop.Service;
 using StupigShop.Web.Infrastructure.Core;
+using StupigShop.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using StupigShop.Web.Infrastructure.Extensions;
 
 namespace StupigShop.Web.API
 {
@@ -22,15 +25,20 @@ namespace StupigShop.Web.API
         {
             return CreateHttpReponse(request, () =>
             {
-                var lstCategoryPost = _postCategoryService.GetAll();
+                HttpResponseMessage reponse = null;
 
-                HttpResponseMessage reponse = request.CreateResponse(HttpStatusCode.OK, lstCategoryPost);
+                IEnumerable<PostCategory> model = _postCategoryService.GetAll();
+
+                IEnumerable<PostCategoryViewModel> modelVM = Mapper.Map<IEnumerable<PostCategory>, IEnumerable<PostCategoryViewModel>>(model);
+
+                reponse = request.CreateResponse(HttpStatusCode.OK, modelVM);
 
                 return reponse;
             });
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage request, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -41,6 +49,8 @@ namespace StupigShop.Web.API
                 }
                 else
                 {
+                    PostCategory postCategory = new PostCategory();
+                    postCategory.UpdatePostCategory(postCategoryVM);
                     var categoryPost = _postCategoryService.Add(postCategory);
                     _postCategoryService.Save();
 
@@ -50,7 +60,8 @@ namespace StupigShop.Web.API
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage request, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage request, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -61,6 +72,8 @@ namespace StupigShop.Web.API
                 }
                 else
                 {
+                    PostCategory postCategory = new PostCategory();
+                    postCategory.UpdatePostCategory(postCategoryVM);
                     _postCategoryService.Update(postCategory);
                     _postCategoryService.Save();
 
@@ -69,7 +82,8 @@ namespace StupigShop.Web.API
                 return reponse;
             });
         }
-        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+
+       public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpReponse(request, () =>
             {
