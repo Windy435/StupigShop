@@ -16,7 +16,7 @@ namespace StupigShop.UnitTest.RepositoryTest
         public void Initialize()
         {
             dbFactory = new DbFactory();
-            objRepository = new PostCaterogyRepository(dbFactory);
+            objRepository = new PostCategoryRepository(dbFactory);
             unitOfWork = new UnitOfWork(dbFactory);
         }
 

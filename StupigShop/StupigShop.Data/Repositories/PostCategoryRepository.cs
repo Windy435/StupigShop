@@ -10,9 +10,9 @@ namespace StupigShop.Data.Repositories
         IEnumerable<PostCategory> GetByAlias(string alias);
     }
 
-    public class PostCaterogyRepository : RepositoryBase<PostCategory>, IPostCategoryRepository
+    public class PostCategoryRepository : RepositoryBase<PostCategory>, IPostCategoryRepository
     {
-        public PostCaterogyRepository(IDbFactory dbFactory) : base(dbFactory)
+        public PostCategoryRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 
