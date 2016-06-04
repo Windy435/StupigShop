@@ -2,19 +2,20 @@
 using StupigShop.Model.Models;
 using StupigShop.Service;
 using StupigShop.Web.Infrastructure.Core;
+using StupigShop.Web.Infrastructure.Extensions;
 using StupigShop.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using StupigShop.Web.Infrastructure.Extensions;
 
 namespace StupigShop.Web.API
 {
     [RoutePrefix("api/postcategory")]
     public class PostCategoryController : ApiControllerBase
     {
-        IPostCategoryService _postCategoryService;
+        private IPostCategoryService _postCategoryService;
+
         public PostCategoryController(IErrorService errorSerice, IPostCategoryService postCategoryService) : base(errorSerice)
         {
             this._postCategoryService = postCategoryService;
@@ -83,7 +84,7 @@ namespace StupigShop.Web.API
             });
         }
 
-       public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpReponse(request, () =>
             {

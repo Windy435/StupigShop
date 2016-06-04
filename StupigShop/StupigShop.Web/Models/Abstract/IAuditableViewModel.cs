@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StupigShop.Web.Models.Abstract
 {
@@ -15,6 +11,7 @@ namespace StupigShop.Web.Models.Abstract
 
         //Seoable
         string MetaKeyword { set; get; }
+
         string MetaDescription { set; get; }
 
         //Switchable

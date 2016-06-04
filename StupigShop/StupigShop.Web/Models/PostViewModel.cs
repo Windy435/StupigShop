@@ -1,12 +1,9 @@
 ﻿using StupigShop.Web.Models.Abstract;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace StupigShop.Web.Models
 {
-    public class PostViewModel:AuditableViewModel
+    public class PostViewModel : AuditableViewModel
     {
         public int ID { set; get; }
         public string Name { set; get; }

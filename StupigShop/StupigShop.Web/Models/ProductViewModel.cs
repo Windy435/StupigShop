@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StupigShop.Web.Models
 {
-    public class ProductViewModel:AuditableViewModel
+    public class ProductViewModel : AuditableViewModel
     {
         public int ID { set; get; }
         public string Name { set; get; }
