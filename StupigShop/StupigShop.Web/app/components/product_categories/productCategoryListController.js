@@ -3,9 +3,9 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject['$scope', 'APIService']
+    productCategoryListController.$inject['$scope', 'APIService', 'notificationService']
 
-    function productCategoryListController($scope, APIService) {
+    function productCategoryListController($scope, APIService, notificationService) {
         $scope.productCatergories = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -29,6 +29,12 @@
                 }
             }
             APIService.get('/api/productcategory/getall', config, function (result) {
+                if (result.data.TotalCount == 0) {
+                    notificationService.displayWarning("No records were found");
+                }
+                else {
+                    notificationService.displaySuccess(result.data.TotalCount + " records were found");
+                }
                 $scope.productCatergories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;

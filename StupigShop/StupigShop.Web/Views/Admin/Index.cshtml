@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Trang Quản Trị</title>
+    <title>Admin Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -17,6 +17,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="~/Assets/admin/css/skins/_all-skins.min.css">
+    <!-- Toast 2.2.1-->
+    <link href="~/Assets/admin/libs/toastr/toastr.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -544,7 +546,9 @@
     <!-- Begin AngularJS -->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
     <script src="~/app/shared/modules/stupigshop.common.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
     <script src="~/app/shared/services/APIService.js"></script>
     <script src="~/app/shared/filter/statusFilter.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
