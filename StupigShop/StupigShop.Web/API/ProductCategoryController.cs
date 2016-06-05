@@ -23,12 +23,12 @@ namespace StupigShop.Web.API
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpReponse(request, () =>
             {
                 int totalRow = 0;
-                IEnumerable<ProductCategory> model = _productCategoryService.GetAll();
+                IEnumerable<ProductCategory> model = _productCategoryService.GetAll(keyword);
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
                 IEnumerable<ProductCategoryViewModel> modelVM = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
