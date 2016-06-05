@@ -1,7 +1,9 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
 (function () {
-    angular.module('stupigshop', ['stupigshop.common', 'stupigshop.products']).config(config);
+    angular.module('stupigshop', ['stupigshop.common',
+                                  'stupigshop.products',
+                                  'stupigshop.product_categories']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
