@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace StupigShop.Web.Models.Abstract
 {
@@ -31,6 +32,7 @@ namespace StupigShop.Web.Models.Abstract
 
         public string MetaDescription { set; get; }
 
+        [Required]
         public bool Status { set; get; }
     }
 }

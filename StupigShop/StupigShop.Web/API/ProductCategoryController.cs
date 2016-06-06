@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using StupigShop.Web.Infrastructure.Extensions;
 
 namespace StupigShop.Web.API
 {
@@ -23,6 +24,7 @@ namespace StupigShop.Web.API
         }
 
         [Route("getall")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize)
         {
             return CreateHttpReponse(request, () =>
@@ -44,6 +46,48 @@ namespace StupigShop.Web.API
                 HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, paginationSet);
 
                 return respone;
+            });
+        }
+
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                IEnumerable<ProductCategory> model = _productCategoryService.GetAll();
+                IEnumerable<ProductCategoryViewModel> modelVM = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, modelVM);
+
+                return respone;
+            });
+        }
+
+        [Route("create")]
+        [HttpPost]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel modelVM)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var model = new ProductCategory();
+                    model.UpdateProductCategory(modelVM);
+
+                    _productCategoryService.Add(model);
+                    _productCategoryService.Save();
+
+                    var reponseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+                    response = request.CreateResponse(HttpStatusCode.OK, reponseData);
+                }
+
+                return response;
             });
         }
     }

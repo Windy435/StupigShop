@@ -1,12 +1,15 @@
 ﻿using StupigShop.Web.Models.Abstract;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace StupigShop.Web.Models
 {
     public class ProductCategoryViewModel:AuditableViewModel
     {
         public int ID { set; get; }
+        [Required]
         public string Name { set; get; }
+        [Required]
         public string Alias { set; get; }
         public string Description { set; get; }
         public int? ParentID { set; get; }
