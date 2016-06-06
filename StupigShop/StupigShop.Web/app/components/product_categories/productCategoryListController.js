@@ -3,9 +3,9 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject['$scope', 'APIService', 'notificationService']
+    productCategoryListController.$inject['$scope', 'APIService', 'notificationService', '$ngBootbox']
 
-    function productCategoryListController($scope, APIService, notificationService) {
+    function productCategoryListController($scope, APIService, notificationService, $ngBootbox) {
         $scope.productCatergories = [];
         $scope.page = 0;
         $scope.pagesCount = 0;
@@ -15,6 +15,24 @@
 
         $scope.search = search;
 
+        $scope.deleteProductCategory = deleteProductCategory;
+
+        function deleteProductCategory(id) {
+            $ngBootbox.confirm('Are you sure want to delete?').then(function () {
+                var config = {
+                    params: {
+                        id: id,
+                    }
+                };
+                APIService.del('api/productcategory/delete', config, function () {
+                    notificationService.displaySuccess('Delete success');
+                    search();
+                }, function () {
+                    notificationService.displayError('Delete failure');
+                })
+            });
+        }
+
         function search() {
             getProductCategories();
         }
@@ -23,9 +41,9 @@
             page = page || 0;
             var config = {
                 params: {
-                    keyword:$scope.keyword,
+                    keyword: $scope.keyword,
                     page: page,
-                    pageSize:20
+                    pageSize: 20
                 }
             }
             APIService.get('/api/productcategory/getall', config, function (result) {

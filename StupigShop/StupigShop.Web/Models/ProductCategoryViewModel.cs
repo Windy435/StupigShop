@@ -7,9 +7,9 @@ namespace StupigShop.Web.Models
     public class ProductCategoryViewModel:AuditableViewModel
     {
         public int ID { set; get; }
-        [Required]
+        [Required(ErrorMessage = "Require enter the category name")]
         public string Name { set; get; }
-        [Required]
+        [Required(ErrorMessage = "Require enter the seo tittle")]
         public string Alias { set; get; }
         public string Description { set; get; }
         public int? ParentID { set; get; }

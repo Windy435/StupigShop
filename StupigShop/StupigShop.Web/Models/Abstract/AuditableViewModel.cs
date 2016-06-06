@@ -32,7 +32,7 @@ namespace StupigShop.Web.Models.Abstract
 
         public string MetaDescription { set; get; }
 
-        [Required]
+        [Required(ErrorMessage = "Require enter the status")]
         public bool Status { set; get; }
     }
 }
