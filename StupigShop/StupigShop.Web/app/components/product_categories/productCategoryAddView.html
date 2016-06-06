@@ -24,19 +24,24 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-change="GetSeoTitle()" name="name" ng-model="productCategory.Name">
+                        <input type="text" class="form-control" required ng-change="GetSeoTitle()" ng-maxlength="256" name="name" ng-model="productCategory.Name">
+                        <span ng-show="frmAddProductCategory.name.$error.required" class="has-error">Must enter a category name</span>
+                        <span ng-show="frmAddProductCategory.name.$error.maxlength" class="has-error">Category name only have 256 characters</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Seo Tittle</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Seo Title</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias">
+                        <input type="text" class="form-control" required name="alias" ng-maxlength="256" ng-model="productCategory.Alias">
+                        <span ng-show="frmAddProductCategory.alias.$error.required" class="has-error">Must enter a seo title</span>
+                        <span ng-show="frmAddProductCategory.alias.$error.maxlength" class="has-error">Seo title only have 256 characters</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="description" ng-model="productCategory.Description">
+                        <input type="text" class="form-control" name="description" ng- maxlength="500" ng-model="productCategory.Description">
+                        <span ng-show="frmAddProductCategory.description.$error.maxlength" class="has-error">Desciption only have 256 characters</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +56,8 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Display Order</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder">
+                        <input type="number" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder">
+                        <span ng-show="frmAddProductCategory.displayOrder.$error.required" class="has-error">Must enter a display order</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -94,7 +100,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button ui-sref="product_categories" class="btn btn-default">Cancel</button>
-                <button type="submit" class="btn btn-success pull-right">Save</button>
+                <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success pull-right">Save</button>
             </div>
             <!-- /.box-footer -->
         </form>
