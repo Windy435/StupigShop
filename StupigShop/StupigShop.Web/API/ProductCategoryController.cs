@@ -16,12 +16,16 @@ namespace StupigShop.Web.API
     [RoutePrefix("api/productcategory")]
     public class ProductCategoryController : ApiControllerBase
     {
+        #region Initialize
+
         private IProductCategoryService _productCategoryService;
 
         public ProductCategoryController(IErrorService errorService, IProductCategoryService productCategoryService) : base(errorService)
         {
             this._productCategoryService = productCategoryService;
         }
+
+        #endregion
 
         [Route("getall")]
         [HttpGet]
@@ -44,6 +48,21 @@ namespace StupigShop.Web.API
                 };
 
                 HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+
+                return respone;
+            });
+        }
+
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+                var modelVM = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, modelVM);
 
                 return respone;
             });
@@ -84,7 +103,36 @@ namespace StupigShop.Web.API
                     _productCategoryService.Save();
 
                     var reponseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
-                    response = request.CreateResponse(HttpStatusCode.OK, reponseData);
+                    response = request.CreateResponse(HttpStatusCode.Created, reponseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel modelVM)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var model = _productCategoryService.GetById(modelVM.ID);
+                    model.UpdateProductCategory(modelVM);
+
+                    model.UpdatedDate = DateTime.Now;
+
+                    _productCategoryService.Update(model);
+                    _productCategoryService.Save();
+
+                    var reponseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+                    response = request.CreateResponse(HttpStatusCode.Created, reponseData);
                 }
 
                 return response;

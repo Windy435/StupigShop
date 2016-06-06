@@ -1,7 +1,7 @@
 ﻿(function (app) {
     app.controller('productCategoryAddController', productCategoryAddController);
-    productCategoryAddController.$inject['$scope', 'APIService', 'notificationService', '$state']
-    function productCategoryAddController($scope, APIService, notificationService, $state) {
+    productCategoryAddController.$inject['$scope', 'APIService', 'notificationService', '$state', 'commonService']
+    function productCategoryAddController($scope, APIService, notificationService, $state, commonService) {
         $scope.productCategory = {
             CreatedDate: new Date(),
             Status: true
@@ -25,6 +25,12 @@
             }, function () {
                 console.log('Cannot get list parent');
             });
+        }
+
+        $scope.GetSeoTitle = GetSeoTitle;
+
+        function GetSeoTitle() {
+            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
         }
 
         loadparentCategories();
