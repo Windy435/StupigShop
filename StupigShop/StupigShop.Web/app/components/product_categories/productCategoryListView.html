@@ -1,8 +1,7 @@
 ﻿<!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Home page
-        <small>This is home page of SPA</small>
+        Product Categories
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -35,8 +34,11 @@
                         </span>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <button class="btn btn-success pull-right" ui-sref="add_product_categories">Add</button>
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-danger pull-right" ng-click="deleteProductCategoryMultiple()" id="btnDelete" disabled>Delete</button>
                 </div>
             </div>
             <br />
@@ -44,13 +46,15 @@
                 <div class="col-md-12">
                     <table class="table table-bordered">
                         <tr>
-                            <th style="width: 10px">ID</th>
-                            <th>Category Name</th>
-                            <th style="width: 50%">Created Date</th>
+                            <td style="width:5%" class="text-center"><input type="checkbox" name="all" ng-click="selectAll()"/></td>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 50%">Category Name</th>
+                            <th>Created Date</th>
                             <th style="width: 10%">Status</th>
                             <th style="width: 10%">Action</th>
                         </tr>
                         <tr ng-repeat="item in productCatergories">
+                            <td class="text-center"><input type="checkbox" ng-model="item.checked" name="all" /></td>
                             <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
                             <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
@@ -66,7 +70,7 @@
                         </tr>
                         <tfoot>
                             <tr>
-                                <td colspan="5"><span class="pull-right">Page: {{page + 1}} - Sum of record: {{totalCount}}</span></td>
+                                <td colspan="6"><span class="pull-right">Page: {{page + 1}} - Sum of record: {{totalCount}}</span></td>
                             </tr>
                         </tfoot>
                     </table>

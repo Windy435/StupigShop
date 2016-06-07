@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using StupigShop.Web.Infrastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace StupigShop.Web.API
 {
@@ -152,11 +153,38 @@ namespace StupigShop.Web.API
                 }
                 else
                 {
-                   var oldProductCategory = _productCategoryService.Delete(id);
+                    var oldProductCategory = _productCategoryService.Delete(id);
                     _productCategoryService.Save();
 
                     var reponseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
                     response = request.CreateResponse(HttpStatusCode.OK, reponseData);
+                }
+
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach (var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
+                    _productCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
                 }
 
                 return response;
