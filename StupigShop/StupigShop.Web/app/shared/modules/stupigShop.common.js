@@ -2,5 +2,5 @@
 /// <reference path="/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js" />
 
 (function () {
-    angular.module('stupigshop.common', ['ui.router', 'ngBootbox']);
+    angular.module('stupigshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor']);
 })();

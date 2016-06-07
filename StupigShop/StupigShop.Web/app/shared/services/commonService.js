@@ -1,9 +1,9 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
 (function (app) {
-    app.service('commonService', commonService);
+    app.factory('commonService', commonService);
 
-    APIService.$inject = ['$http', 'notificationService'];
+    commonService.$inject = ['$http', 'notificationService'];
     function commonService($http, notificationService) {
         return {
             getSeoTitle: getSeoTitle
