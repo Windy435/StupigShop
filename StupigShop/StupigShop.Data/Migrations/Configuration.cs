@@ -17,7 +17,7 @@
 
         protected override void Seed(StupigShopDbContext context)
         {
-            CreateProductCategorySample(context);
+//            CreateProductCategorySample(context);
             //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StupigShopDbContext()));
@@ -42,19 +42,6 @@
             //}
 
             //var adminUser = manager.FindByEmail("stupig.shop@gmail.com");
-
-            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
 
         private void CreateProductCategorySample(StupigShopDbContext dbContext)

@@ -1,13 +1,15 @@
-﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
-
-(function (app) {
+﻿(function (app) {
     app.controller('rootController', rootController);
-    app.$inject['$scope', '$state'];
-    function rootController($scope, $state) {
-        $scope.logout = function () {
+
+    rootController.$inject = ['$state', 'authData', 'loginService', '$scope', 'authenticationService'];
+
+    function rootController($state, authData, loginService, $scope, authenticationService) {
+        $scope.logOut = function () {
+            loginService.logOut();
             $state.go('login');
         }
-    }
-})(angular.module("stupigshop"));
+        $scope.authentication = authData.authenticationData;
 
-//anonymous function
+        authenticationService.validateRequest();
+    }
+})(angular.module('stupigshop'));

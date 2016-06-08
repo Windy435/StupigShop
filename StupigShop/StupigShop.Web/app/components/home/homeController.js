@@ -1,10 +1,7 @@
-﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
-
-(function (app) {
+﻿(function (app) {
     app.controller('homeController', homeController);
+
     function homeController() {
 
     }
-})(angular.module("stupigshop"));
-
-//anonymous function
+})(angular.module('stupigshop'));
