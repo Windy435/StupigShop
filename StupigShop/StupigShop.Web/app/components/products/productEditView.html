@@ -1,10 +1,154 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-
-</body>
-</html>
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Update product: {{product.Name}}
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a ui-sref="products">List</a></li>
+        <li class="active">Update</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Update Product</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmUpdateProduct" role="form" ng-submit="UpdateProduct()">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Product Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" required ng-change="GetSeoTitle()" ng-maxlength="256" name="name" ng-model="product.Name">
+                        <span ng-show="frmUpdateProduct.name.$error.required" class="has-error">Must enter a product name</span>
+                        <span ng-show="frmUpdateProduct.name.$error.maxlength" class="has-error">Product name only have 256 characters</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Seo Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" required name="alias" ng-maxlength="256" ng-model="product.Alias">
+                        <span ng-show="frmUpdateProduct.alias.$error.required" class="has-error">Must enter a seo title</span>
+                        <span ng-show="frmUpdateProduct.alias.$error.maxlength" class="has-error">Seo title only have 256 characters</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="description" ng- maxlength="500" ng-model="product.Description">
+                        <span ng-show="frmUpdateProduct.description.$error.maxlength" class="has-error">Desciption only have 256 characters</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Categories</label>
+                    <div class="col-sm-10">
+                        <select name="categoryID" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
+                            <option value="">None</option>
+                        </select>
+                        <input type="hidden" required name="categoryID" ng-model="product.CategoryID" />
+                        <span ng-show="frmUpdateProduct.categoryID.$error.required" class="has-error">Must enter a category</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Warranty</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" value="0" name="warranty" ng-model="product.Warranty"> (months)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" required value="0" name="price" ng-model="product.Price">
+                        <span ng-show="frmUpdateProduct.price.$error.required" class="has-error">Must enter a price</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Promotion Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" name="promotionPrice" ng-model="product.PromotionPrice">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Image</label>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="image" ng-model="product.Image">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="chooseImage()">Choose Image</button>
+                            </span>
+                        </div>
+                    </div>
+                    <!--<div class="col-sm-10">
+                        <input type="text" class="form-control" name="image" ng-model="product.Image">
+                        <br />
+                        <button class="btn btn-default" ng-click="chooseImage()">Choose Image</button>
+                    </div>-->
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Product Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="content" ckeditor="ckeditorOptions" ng-model="product.Content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tags</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="tags" ng-model="product.Tags">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta keyword</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="metaKeyword" ng-model="product.MetaKeyword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Meta Description</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="metaDescription" ng-model="product.MetaDescription"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="status" ng-model="product.Status" ng-checked="product.Status"> Enable
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag"> Show in home page
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag"> Hot product
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button ui-sref="products" class="btn btn-default">Cancel</button>
+                <button type="submit" ng-disabled="frmUpdateProduct.$invalid" class="btn btn-success pull-right">Save</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
+    </div>
+    <!-- /.box -->
+</section>
+<!-- /.content -->
