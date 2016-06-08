@@ -15,6 +15,7 @@
         $scope.UpdateProduct = UpdateProduct;
 
         function UpdateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             APIService.put('api/product/update', $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + " updated");
                 $state.go('products');
@@ -26,6 +27,7 @@
         function loadProductDetail() {
             APIService.get('/api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                $scope.moreImages = JSON.parse($scope.product.MoreImages);
             }, function (error) {
                 notificationService.displayError(error.data);
             });
@@ -41,16 +43,33 @@
                 notificationService.displayError("Load product category failed");
             });
         }
+
         $scope.chooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
             }
 
             finder.popup();
             //            console.log($scope.product.Image);
 
         }
+
+        $scope.moreImages = [];
+
+        $scope.chooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                });
+            }
+
+            finder.popup();
+        }
+
         $scope.getListProductCategory();
 
 

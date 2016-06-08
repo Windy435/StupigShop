@@ -19,6 +19,7 @@
         $scope.AddProduct = AddProduct;
 
         function AddProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             APIService.post('api/product/create', $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + " added");
                 $state.go('products');
@@ -43,17 +44,34 @@
                 notificationService.displayError("Load product category failed");
             });
         }
+
         $scope.chooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
             }
 
             finder.popup();
-//            console.log($scope.product.Image);
+            //            console.log($scope.product.Image);
 
         }
+
+        $scope.moreImages = [];
+
+        $scope.chooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                });
+            }
+
+            finder.popup();
+        }
+
         $scope.getListProductCategory();
-        
+
     }
 })(angular.module("stupigshop.products"));
