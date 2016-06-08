@@ -12,7 +12,7 @@
         }
 
         $scope.ckeditorOptions = {
-            languague: 'vi',
+            language: 'eng',
             height: '200px'
         }
 
@@ -43,8 +43,17 @@
                 notificationService.displayError("Load product category failed");
             });
         }
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.product.Image = fileUrl;
+            }
 
+            finder.popup();
+//            console.log($scope.product.Image);
+
+        }
         $scope.getListProductCategory();
-
+        
     }
 })(angular.module("stupigshop.products"));
