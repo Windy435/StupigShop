@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace StupigShop.Web.API
 {
     [RoutePrefix("api/productcategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         #region Initialize
@@ -100,6 +101,9 @@ namespace StupigShop.Web.API
                     var model = new ProductCategory();
                     model.UpdateProductCategory(modelVM);
 
+                    model.CreatedDate = DateTime.Now;
+                    model.CreateBy = User.Identity.Name;
+
                     _productCategoryService.Add(model);
                     _productCategoryService.Save();
 
@@ -128,6 +132,7 @@ namespace StupigShop.Web.API
                     model.UpdateProductCategory(modelVM);
 
                     model.UpdatedDate = DateTime.Now;
+                    model.UpdatedBy = User.Identity.Name;
 
                     _productCategoryService.Update(model);
                     _productCategoryService.Save();

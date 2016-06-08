@@ -10,5 +10,6 @@
         authDataFactory.authenticationData = authentication;
 
         return authDataFactory;
-    }]);
+    }
+    ]);
 })(angular.module('stupigshop.common'));

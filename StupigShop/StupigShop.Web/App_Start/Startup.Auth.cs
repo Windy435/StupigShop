@@ -91,7 +91,7 @@ namespace StupigShop.Web.App_Start
                 }
                 else
                 {
-                    context.SetError("invalid_grant", "Invalid User name or password.'");
+                    context.SetError("invalid_grant", "Invalid Username or password.'");
                     context.Rejected();
                 }
             }

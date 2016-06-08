@@ -12,6 +12,7 @@ using System.Web.Http;
 namespace StupigShop.Web.API
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         private IPostCategoryService _postCategoryService;

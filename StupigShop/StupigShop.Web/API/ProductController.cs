@@ -16,6 +16,7 @@ using System.Web.Script.Serialization;
 namespace StupigShop.Web.API
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
@@ -70,21 +71,6 @@ namespace StupigShop.Web.API
             });
         }
 
-        //[Route("getallcategories")]
-        //[HttpGet]
-        //public HttpResponseMessage GetAll(HttpRequestMessage request)
-        //{
-        //    return CreateHttpReponse(request, () =>
-        //    {
-        //        IEnumerable<Product> model = _productService.GetAll();
-        //        IEnumerable<ProductViewModel> modelVM = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(model);
-
-        //        HttpResponseMessage respone = request.CreateResponse(HttpStatusCode.OK, modelVM);
-
-        //        return respone;
-        //    });
-        //}
-
         [Route("create")]
         [HttpPost]
         public HttpResponseMessage Create(HttpRequestMessage request, ProductViewModel modelVM)
@@ -100,6 +86,9 @@ namespace StupigShop.Web.API
                 {
                     var model = new Product();
                     model.UpdateProduct(modelVM);
+
+                    model.CreatedDate = DateTime.Now;
+                    model.CreateBy = User.Identity.Name;
 
                     _productService.Add(model);
                     _productService.Save();
@@ -129,6 +118,7 @@ namespace StupigShop.Web.API
                     model.UpdateProduct(modelVM);
 
                     model.UpdatedDate = DateTime.Now;
+                    model.UpdatedBy = User.Identity.Name;
 
                     _productService.Update(model);
                     _productService.Save();
