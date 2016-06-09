@@ -5,6 +5,7 @@ using StupigShop.Service;
 using StupigShop.Web.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace StupigShop.Web.Controllers
 {
@@ -21,6 +22,7 @@ namespace StupigShop.Web.Controllers
             _productService = productService;
         }
 
+        [OutputCache(Duration = 60, Location =OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var slideModel = _commonService.GetSlides();
@@ -39,21 +41,8 @@ namespace StupigShop.Web.Controllers
             return View(howeViewModel);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Footer()
         {
             var footerModel = _commonService.GetFooter();
@@ -68,6 +57,7 @@ namespace StupigShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 3600)]
         public ActionResult Category()
         {
             var model = _productCategoryService.GetAll();
