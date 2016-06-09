@@ -82,6 +82,18 @@
             </div>
             <h6>@Model.Quanity products in store</h6>
             <p>@Model.Description</p>
+            <div class="tag">
+                <h5>Tag :</h5>
+                <ul class="taglist">
+                    @foreach (var tag in (IEnumerable<StupigShop.Web.Models.TagViewModel>)ViewBag.Tags)
+                    {
+                        <li><a href="/tag/@(tag.ID).html">#@(tag.Name) </a></li>
+                    }
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+
             <div class="share">
                 <h5>Share Product :</h5>
                 <ul class="share_nav">

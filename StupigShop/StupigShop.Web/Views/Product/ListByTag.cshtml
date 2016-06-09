@@ -1,8 +1,8 @@
 ﻿@model StupigShop.Web.Infrastructure.Core.PaginationSet<StupigShop.Web.Models.ProductViewModel>
 
 @{
-    var keyword = (string)ViewBag.Keyword;
-    ViewBag.Title = "Result for keyword: " + keyword;
+    var tag = (StupigShop.Web.Models.TagViewModel)ViewBag.Tag;
+    ViewBag.Title = "List by tag: #" + tag.Name;
     Layout = "~/Views/Shared/Layouts.cshtml";
 }
 
@@ -11,15 +11,7 @@
     {
         <div class="w_content">
             <div class="women">
-                <a href=""><h4>Result for search: @keyword - <span>@Model.TotalCount product</span> </h4></a>
-                <ul class="w_nav">
-                    <li>Sort : </li>
-                    <li><a class="active" href="?@Model.Page$sort=popular">popular</a></li> |
-                    <li><a href="?@Model.Page$sort=new">new </a></li> |
-                    <li><a href="?@Model.Page$sort=discount">discount</a></li> |
-                    <li><a href="?@Model.Page$sort=price">price: Low High </a></li>
-                    <div class="clearfix"> </div>
-                </ul>
+                <a href=""><h4>Result for search: #@tag.Name - <span>@Model.TotalCount product</span> </h4></a>
                 <div class="clearfix"> </div>
             </div>
         </div>
