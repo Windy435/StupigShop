@@ -7,10 +7,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Big shope A Ecommerce Category Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <title>Stupig Online Shop | Home</title>
     <link href="~/Assets/client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!--theme-style-->
     <link href="~/Assets/client/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/client/font-awesome-4.6.3/css/font-awesome.css" rel="stylesheet" />
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -25,20 +26,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @{Html.RenderAction("Header", "Home");}
     <!---->
     <div class="container">
-       @RenderBody()
+        @RenderBody()
+        @{Html.RenderAction("Category", "Home");}
     </div>
-
-    @RenderSection("homeProducts", required:false)
-   <!---->
-    <div class="clearfix"> </div>
-    </div>
-    @{ Html.RenderAction("Category", "Home");}
-    <div class="clearfix"> </div>
-    </div>
-
     <!---->
     @{Html.RenderAction("Footer", "Home");}
+    <div class="clearfix"> </div>
 
-    @RenderSection("footerJS", required:false)
+    @RenderSection("footerJS", required: false)
 </body>
 </html>
