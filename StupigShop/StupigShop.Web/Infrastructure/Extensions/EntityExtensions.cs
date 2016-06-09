@@ -89,5 +89,13 @@ namespace StupigShop.Web.Infrastructure.Extensions
             productCategory.UpdatedBy = productCategoryViewModel.UpdatedBy;
             productCategory.UpdatedDate = productCategoryViewModel.UpdatedDate;
         }
+
+        public static void UpdatePage(this Page page, PageViewModel pageViewModel)
+        {
+            page.Alias = pageViewModel.Alias;
+            page.Content = pageViewModel.Content;
+            page.ID = pageViewModel.ID;
+            page.Name = pageViewModel.Name;
+        }
     }
 }

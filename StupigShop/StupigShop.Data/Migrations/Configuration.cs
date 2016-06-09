@@ -7,6 +7,8 @@
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
 
@@ -23,6 +25,7 @@
             //CreateProductCategorySample(context);
             //createFooterSample(context);
             //createSlide(context);
+            CreatePage(context);
         }
 
         private void CreateUserManager(StupigShopDbContext dbContext)
@@ -110,6 +113,38 @@
                 };
                 dbContext.Slides.AddRange(listSilde);
                 dbContext.SaveChanges();
+            }
+        }
+
+        private void CreatePage(StupigShopDbContext context)
+        {
+            if (context.Pages.Count() == 0)
+            {
+                try
+                {
+                    var page = new Page()
+                    {
+                        Name = "About",
+                        Alias = "about",
+                        Content = @"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium ",
+                        Status = true
+
+                    };
+                    context.Pages.Add(page);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+
             }
         }
     }

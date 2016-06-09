@@ -19,6 +19,7 @@ namespace StupigShop.Web.Mappings
             Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
             Mapper.CreateMap<Footer, FooterViewModel>();
             Mapper.CreateMap<Slide, SlideViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
         }
     }
 }

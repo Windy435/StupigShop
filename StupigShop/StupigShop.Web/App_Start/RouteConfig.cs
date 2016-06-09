@@ -24,10 +24,10 @@ namespace StupigShop.Web
             );
 
             routes.MapRoute(
-                name: "About",
-                url: "about.html",
-                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "StupigShop.Web.Controllers" }
+                 name: "Page",
+                 url: "page/{alias}.html",
+                 defaults: new { controller = "Page", action = "Index", alias = UrlParameter.Optional },
+                 namespaces: new string[] { "StupigShop.Web.Controllers" }
             );
 
             routes.MapRoute(
