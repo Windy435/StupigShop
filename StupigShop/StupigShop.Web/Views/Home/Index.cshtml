@@ -83,17 +83,17 @@
         {
             var url = "/" + product.Alias + ".p-" + product.ID + ".html";
             <div class="col-md-4 chain-grid grid-top-chain">
-                <a href="@url">@product.Image</a>
+                <a href="@url"><img class="img-responsive chain" src="@product.Image" /></a>
                 <span class="star"> </span>
                 <div class="grid-chain-bottom">
-                    <h6><a href="single.html">@product.Name</a></h6>
+                    <h6><a href="@url">@product.Name</a></h6>
                     <div class="star-price">
                         <div class="dolor-grid">
                             @if (product.PromotionPrice.HasValue)
                             {
-                                <span class="actual">@product.PromotionPrice.Value.ToString("N0")</span>
+                                <span class="actual">@product.PromotionPrice.Value.ToString("N0") VND</span>
                             }
-                           <span class="reducedfrom">@product.Price.ToString("N0")</span>
+                           <span class="reducedfrom">@product.Price.ToString("N0") VND</span>
                             <span class="rating">
                                 <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
                                 <label for="rating-input-1-5" class="rating-star1"> </label>
@@ -124,17 +124,17 @@
        {
            var url = "/" + product.Alias + ".p-" + product.ID + ".html";
         <div class="col-md-4 chain-grid grid-top-chain">
-            <a href="@url">@product.Image</a>
+            <a href="@url"><img class="img-responsive chain" src="@product.Image" /></a>
             <span class="star"> </span>
             <div class="grid-chain-bottom">
-                <h6><a href="single.html">@product.Name</a></h6>
+                <h6><a href="@url">@product.Name</a></h6>
                 <div class="star-price">
                     <div class="dolor-grid">
                         @if (product.PromotionPrice.HasValue)
                         {
-                            <span class="actual">@product.PromotionPrice.Value.ToString("N0")</span>
+                            <span class="actual">@product.PromotionPrice.Value.ToString("N0") VND</span>
                         }
-                        <span class="reducedfrom">@product.Price.ToString("N0")</span>
+                        <span class="reducedfrom">@product.Price.ToString("N0") VND</span>
                         <span class="rating">
                             <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1">
                             <label for="rating-input-1-5" class="rating-star1"> </label>
