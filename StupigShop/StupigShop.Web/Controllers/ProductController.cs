@@ -25,6 +25,26 @@ namespace StupigShop.Web.Controllers
             return View();
         }
 
+        public ActionResult Search(string keyword, int page = 1, string sort = "")
+        {
+            int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
+            int totalRow = 0;
+            var productModel = _productService.Search(keyword, page, pageSize, sort, out totalRow);
+            var productViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(productModel);
+            int totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+
+            ViewBag.Keyword = keyword;
+            var paginationSet = new PaginationSet<ProductViewModel>()
+            {
+                Items = productViewModel,
+                MaxPage = int.Parse(ConfigHelper.GetByKey("MaxPage")),
+                Page = page,
+                TotalCount = totalRow,
+                TotalPages = totalPage
+            };
+
+            return View(paginationSet);
+        }
         public ActionResult Category(int id, int page = 1, string sort = "")
         {
             int pageSize = int.Parse(ConfigHelper.GetByKey("PageSize"));
@@ -42,9 +62,19 @@ namespace StupigShop.Web.Controllers
                 Page = page,
                 TotalCount = totalRow,
                 TotalPages = totalPage
-           };
+            };
 
             return View(paginationSet);
+        }
+
+        public JsonResult GetListProductByName(string keyword)
+        {
+            var model = _productService.GetAllByName(keyword);
+         
+            return Json(new
+            {
+                data = model
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

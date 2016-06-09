@@ -10,6 +10,13 @@ namespace StupigShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Search",
+                url: "search.html",
+                defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+                namespaces: new string[] { "StupigShop.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Login",
                 url: "login.html",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
