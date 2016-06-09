@@ -68,6 +68,7 @@ namespace StupigShop.Web.Infrastructure.Extensions
             product.ViewCount = productViewModel.ViewCount;
             product.Warranty = productViewModel.Warranty;
             product.Tags = productViewModel.Tags;
+            product.Quanity = productViewModel.Quanity;
         }
 
         public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryViewModel)

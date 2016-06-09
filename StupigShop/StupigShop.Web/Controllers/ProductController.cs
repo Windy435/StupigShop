@@ -7,6 +7,7 @@ using StupigShop.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace StupigShop.Web.Controllers
 {
@@ -22,7 +23,14 @@ namespace StupigShop.Web.Controllers
         // GET: Product
         public ActionResult Detail(int id)
         {
-            return View();
+            var productModel = _productService.GetById(id);
+            var viewModel = Mapper.Map<Product, ProductViewModel>(productModel);
+            var relatedProduct = _productService.GetReatedProducts(productModel.ID, 6);
+            ViewBag.RelatedProducts = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(relatedProduct);
+
+            List<string> listImages = new JavaScriptSerializer().Deserialize<List<string>>(viewModel.MoreImages);
+            ViewBag.MoreImages = listImages;
+            return View(viewModel);
         }
 
         public ActionResult Search(string keyword, int page = 1, string sort = "")
@@ -70,7 +78,7 @@ namespace StupigShop.Web.Controllers
         public JsonResult GetListProductByName(string keyword)
         {
             var model = _productService.GetAllByName(keyword);
-         
+
             return Json(new
             {
                 data = model

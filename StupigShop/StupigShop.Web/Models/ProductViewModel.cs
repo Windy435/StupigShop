@@ -21,6 +21,8 @@ namespace StupigShop.Web.Models
         public int? ViewCount { set; get; }
 
         public string Tags { set; get; }
+
+        public int Quanity { set; get; }
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
         public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }
 
