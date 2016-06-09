@@ -1,9 +1,24 @@
-﻿using System.Web.Mvc;
+﻿using AutoMapper;
+using StupigShop.Data.Repositories;
+using StupigShop.Model.Models;
+using StupigShop.Service;
+using StupigShop.Web.Models;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace StupigShop.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IProductCategoryService _productCategoryService;
+        ICommonService _commonService;
+
+        public HomeController(IProductCategoryService productCategoryService, ICommonService commonService)
+        {
+            _productCategoryService = productCategoryService;
+            _commonService = commonService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -26,7 +41,9 @@ namespace StupigShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
-            return PartialView("Footer");
+            var footerModel = _commonService.GetFooter();
+            var footerViewModel = Mapper.Map<Footer, FooterViewModel>(footerModel);
+            return PartialView(footerViewModel);
         }
 
         [ChildActionOnly]
@@ -38,7 +55,9 @@ namespace StupigShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Category()
         {
-            return PartialView("Category");
+            var model = _productCategoryService.GetAll();
+            var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            return PartialView(listProductCategoryViewModel);
         }
     }
 }

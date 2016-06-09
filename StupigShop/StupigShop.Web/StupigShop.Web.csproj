@@ -215,6 +215,7 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\Abstract\AuditableViewModel.cs" />
     <Compile Include="Models\Abstract\IAuditableViewModel.cs" />
+    <Compile Include="Models\FooterViewModel.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PostCategoryViewModel.cs" />

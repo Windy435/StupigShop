@@ -1,11 +1,13 @@
 ﻿namespace StupigShop.Data.Migrations
 {
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Model.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<StupigShop.Data.StupigShopDbContext>
@@ -17,7 +19,8 @@
 
         protected override void Seed(StupigShopDbContext context)
         {
-//            CreateProductCategorySample(context);
+            //            CreateProductCategorySample(context);
+        //    createFooterSample(context);
             //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StupigShopDbContext()));
@@ -56,6 +59,18 @@
                     new ProductCategory() {Name ="Mỹ phẩm", Alias = "my-pham",Status=true}
                 };
                 dbContext.ProductCategorys.AddRange(listProductCategory);
+                dbContext.SaveChanges();
+            }
+        }
+
+        private void createFooterSample(StupigShopDbContext dbContext)
+        {
+            if(dbContext.Footers.Count(x=> x.ID == CommonConstants.DefaultFooterID) == 0)
+            {
+                StreamReader readContent = File.OpenText("E:\\Newbie\\StupigShop-ASP.NET_WebAPI_AngularJS\\Source\\Git\\StupigShop\\StupigShop.Data\\Migrations\\FooterContent.txt");
+                string content = readContent.ReadToEnd();
+
+                dbContext.Footers.Add(new Footer() { ID = CommonConstants.DefaultFooterID, Content = content });
                 dbContext.SaveChanges();
             }
         }

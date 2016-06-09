@@ -30,7 +30,7 @@
         $urlRouterProvider.otherwise('/login');
     }
 
-    //configAuthentication.$inject['$httpProvider'];
+    configAuthentication.$inject = ['$httpProvider'];
     function configAuthentication($httpProvider) {
         $httpProvider.interceptors.push(function ($q, $location) {
             return {

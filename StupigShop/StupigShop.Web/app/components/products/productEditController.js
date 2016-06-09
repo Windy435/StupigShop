@@ -1,6 +1,6 @@
 ﻿(function (app) {
     app.controller('productEditController', productEditController);
-    productEditController.$inject['$scope', 'APIService', 'notificationService', '$state', '$stateParams', 'commonService']
+    productEditController.$inject = ['$scope', 'APIService', 'notificationService', '$state', '$stateParams', 'commonService']
     function productEditController($scope, APIService, notificationService, $state, $stateParams, commonService) {
         $scope.product = {
             CreatedDate: new Date(),

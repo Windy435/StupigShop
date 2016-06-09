@@ -3,7 +3,7 @@
 (function (app) {
     app.controller('productCategoryListController', productCategoryListController);
 
-    productCategoryListController.$inject['$scope', 'APIService', 'notificationService', '$ngBootbox', '$filter']
+    productCategoryListController.$inject = ['$scope', 'APIService', 'notificationService', '$ngBootbox', '$filter']
 
     function productCategoryListController($scope, APIService, notificationService, $ngBootbox, $filter) {
         $scope.productCatergories = [];
