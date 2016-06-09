@@ -19,32 +19,36 @@
 
         protected override void Seed(StupigShopDbContext context)
         {
-            //            CreateProductCategorySample(context);
-        //    createFooterSample(context);
-            //  This method will be called after migrating to the latest version.
+            //CreateUserManager(Context);
+            //CreateProductCategorySample(context);
+            //createFooterSample(context);
+            //createSlide(context);
+        }
 
-            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StupigShopDbContext()));
+        private void CreateUserManager(StupigShopDbContext dbContext)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new StupigShopDbContext()));
 
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new StupigShopDbContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new StupigShopDbContext()));
 
-            //var user = new ApplicationUser()
-            //{
-            //    UserName = "Stupig",
-            //    Email = "stupig.shop@gmail.com",
-            //    EmailConfirmed = true,
-            //    BirthDay = DateTime.Now,
-            //    FullName = "Stupig Online Shop"
-            //};
+            var user = new ApplicationUser()
+            {
+                UserName = "Stupig",
+                Email = "stupig.shop@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Stupig Online Shop"
+            };
 
-            //manager.Create(user, "123654$");
+            manager.Create(user, "123654$");
 
-            //if (!roleManager.Roles.Any())
-            //{
-            //    roleManager.Create(new IdentityRole { Name = "Admin" });
-            //    roleManager.Create(new IdentityRole { Name = "User" });
-            //}
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
 
-            //var adminUser = manager.FindByEmail("stupig.shop@gmail.com");
+            var adminUser = manager.FindByEmail("stupig.shop@gmail.com");
         }
 
         private void CreateProductCategorySample(StupigShopDbContext dbContext)
@@ -65,12 +69,46 @@
 
         private void createFooterSample(StupigShopDbContext dbContext)
         {
-            if(dbContext.Footers.Count(x=> x.ID == CommonConstants.DefaultFooterID) == 0)
+            if (dbContext.Footers.Count(x => x.ID == CommonConstants.DefaultFooterID) == 0)
             {
                 StreamReader readContent = File.OpenText("E:\\Newbie\\StupigShop-ASP.NET_WebAPI_AngularJS\\Source\\Git\\StupigShop\\StupigShop.Data\\Migrations\\FooterContent.txt");
                 string content = readContent.ReadToEnd();
 
                 dbContext.Footers.Add(new Footer() { ID = CommonConstants.DefaultFooterID, Content = content });
+                dbContext.SaveChanges();
+            }
+        }
+
+        private void createSlide(StupigShopDbContext dbContext)
+        {
+            if (dbContext.Slides.Count() == 0)
+            {
+                List<Slide> listSilde = new List<Slide>()
+                {
+                    new Slide() {
+                        Name ="Slide 1",
+                        DisplayOrder = 1,
+                        Status =true,
+                        URL ="#",
+                        Image ="/Assets/client/images/bag.jpg",
+                        Content =@"<h2>FLAT 50% 0FF</h2>
+                                       <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>
+                                       <span class=""on-get"">GET NOW</spa"
+                    },
+                    new Slide() {
+                        Name ="Slide 2",
+                        DisplayOrder = 2,
+                        Status = true,
+                        URL = "#",
+                        Image = "/Assets/client/images/bag1.jpg",
+                        Content = @"<h2>FLAT 50% 0FF</h2>
+                                        <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>
+                                        <span class=""on-get"">GET NOW</span>"
+                    }
+                };
+                dbContext.Slides.AddRange(listSilde);
                 dbContext.SaveChanges();
             }
         }

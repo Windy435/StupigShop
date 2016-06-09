@@ -3,6 +3,8 @@ using StupigShop.Data.Infrastructure;
 using StupigShop.Data.Repositories;
 using StupigShop.Model.Models;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace StupigShop.Service
 {
@@ -17,6 +19,10 @@ namespace StupigShop.Service
         Product Delete(int id);
 
         IEnumerable<Product> GetAll();
+
+        IEnumerable<Product> GetLastest(int top);
+
+        IEnumerable<Product> GetHotProduct(int top);
 
         IEnumerable<Product> GetAll(string keyword);
 
@@ -66,7 +72,7 @@ namespace StupigShop.Service
                     productTag.TagID = tagId;
                     _productTagRepository.Add(productTag);
                 }
-              //  _unitOfWork.Commit();
+                //  _unitOfWork.Commit();
             }
             return temp;
         }
@@ -136,6 +142,16 @@ namespace StupigShop.Service
                 }
             }
             //_unitOfWork.Commit();
+        }
+
+        public IEnumerable<Product> GetLastest(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status).OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public IEnumerable<Product> GetHotProduct(int top)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.HotFlag == true).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }
