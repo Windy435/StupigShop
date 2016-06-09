@@ -22,5 +22,23 @@ namespace StupigShop.Web.Controllers
 
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Footer()
+        {
+            return PartialView("Footer");
+        }
+
+        [ChildActionOnly]
+        public ActionResult Header()
+        {
+            return PartialView("Header");
+        }
+
+        [ChildActionOnly]
+        public ActionResult Category()
+        {
+            return PartialView("Category");
+        }
     }
 }

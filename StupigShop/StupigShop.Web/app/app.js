@@ -2,8 +2,7 @@
 
 (function () {
     angular.module('stupigshop',
-        [
-            'stupigshop.products',
+        ['stupigshop.products',
          'stupigshop.product_categories',
          'stupigshop.common'])
         .config(config)
