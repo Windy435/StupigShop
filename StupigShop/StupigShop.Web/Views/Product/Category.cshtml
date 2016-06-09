@@ -14,10 +14,10 @@
                 <a href="/@(category.Alias).pc-@(category.ID).html"><h4>@category.Name - <span>@Model.TotalCount product</span> </h4></a>
                 <ul class="w_nav">
                     <li>Sort : </li>
-                    <li><a class="active" href="#">popular</a></li> |
-                    <li><a href="#">new </a></li> |
-                    <li><a href="#">discount</a></li> |
-                    <li><a href="#">price: Low High </a></li>
+                    <li><a class="active" href="?@Model.Page$sort=popular">popular</a></li> |
+                    <li><a href="?@Model.Page$sort=new">new </a></li> |
+                    <li><a href="?@Model.Page$sort=discount">discount</a></li> |
+                    <li><a href="?@Model.Page$sort=price">price: Low High </a></li>
                     <div class="clearfix"> </div>
                 </ul>
                 <div class="clearfix"> </div>
