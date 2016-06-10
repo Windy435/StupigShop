@@ -1,22 +1,20 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using StupigShop.Model.Models;
 using StupigShop.Service;
 using StupigShop.Web.Models;
+using System.Web.Mvc;
 
 namespace StupigShop.Web.Controllers
 {
     public class PageController : Controller
     {
-        IPageService _pageService;
+        private IPageService _pageService;
+
         public PageController(IPageService pageService)
         {
             this._pageService = pageService;
         }
+
         // GET: Page
         public ActionResult Index(string alias)
         {

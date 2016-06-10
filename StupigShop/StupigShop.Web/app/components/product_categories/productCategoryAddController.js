@@ -33,6 +33,19 @@
             $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
         }
 
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.productCategory.Image = fileUrl;
+                });
+            }
+
+            finder.popup();
+            //            console.log($scope.product.Image);
+
+        }
+
         loadparentCategories();
     }
 })(angular.module('stupigshop.product_categories'));

@@ -47,16 +47,18 @@
                     <table class="table table-bordered">
                         <tr>
                             <td style="width:5%" class="text-center"><input type="checkbox" name="all" ng-click="selectAll()" /></td>
-                            <th style="width: 5%">ID</th>
-                            <th style="width: 50%">Product Name</th>
+                            <th style="width: 30%">Product Name</th>
+                            <th style="width: 10%">Quantity</th>
+                            <th style="width: 10%">Price</th>
                             <th>Created Date</th>
                             <th style="width: 10%">Status</th>
                             <th style="width: 10%">Action</th>
                         </tr>
                         <tr ng-repeat="item in products">
                             <td class="text-center"><input type="checkbox" ng-model="item.checked" name="all" /></td>
-                            <td>{{item.ID}}</td>
                             <td>{{item.Name}}</td>
+                            <td>{{item.Quanity}}</td>
+                            <td>{{item.Price}} VND</td>
                             <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
                             <td>
                                 <span ng-class="{'badge bg-red':item.Status == false, 'badge bg-green':item.Status == true}">
