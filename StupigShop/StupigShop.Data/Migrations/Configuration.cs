@@ -21,10 +21,10 @@
 
         protected override void Seed(StupigShopDbContext context)
         {
-            //CreateUserManager(Context);
-            //CreateProductCategorySample(context);
-            //createFooterSample(context);
-            //createSlide(context);
+            CreateUserManager(context);
+            CreateProductCategorySample(context);
+            createFooterSample(context);
+            createSlide(context);
             CreatePage(context);
         }
 
@@ -74,7 +74,7 @@
         {
             if (dbContext.Footers.Count(x => x.ID == CommonConstants.DefaultFooterID) == 0)
             {
-                StreamReader readContent = File.OpenText("E:\\Newbie\\StupigShop-ASP.NET_WebAPI_AngularJS\\Source\\Git\\StupigShop\\StupigShop.Data\\Migrations\\FooterContent.txt");
+                StreamReader readContent = File.OpenText(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "//Migrations//FooterContent.txt");
                 string content = readContent.ReadToEnd();
 
                 dbContext.Footers.Add(new Footer() { ID = CommonConstants.DefaultFooterID, Content = content });
